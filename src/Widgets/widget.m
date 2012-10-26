@@ -137,7 +137,7 @@ void widget_set_textColor(widget_t *widget, int _color)
 	[p setNeedsDisplay:YES];
 }
 
-void widget_set_background(widget_t *widget, int _color)
+void widget_set_backgroundColor(widget_t *widget, XS_COLOR_LIST _color)
 {
 	id  p;
 	NSColor *color;

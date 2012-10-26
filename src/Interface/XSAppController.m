@@ -22,9 +22,14 @@
 	[[XSApplication sharedApplication] performSelector:@selector(terminate:) withObject:sender];
 }
 
+- (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender
+{
+	    return YES;
+}
+
 - (void)doAbout:(id)sender
 {
-	NSAlert *alert = [NSAlert alertWithMessageText:@"osxstep 0.2" defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@"lero lero"];
+	NSAlert *alert = [NSAlert alertWithMessageText:@"osxstep 0.3" defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@"Copyright (C) rafael villordo"];
 	[alert runModal];
 }
 

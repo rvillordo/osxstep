@@ -4,6 +4,7 @@
 inputbox_t	*iuser, *ipass;
 label_t		*luser, *lpass, *bglabel, *txtlabel, *svalue;
 box_t		*box;
+sliderbar_t	*slider;
 progressbar_t *level;
 label_t *clocklabel;
 
@@ -24,9 +25,9 @@ int update_clock(void *data)
 
 int on_freq_change(void *data)
 {
-	int value = *(int *)data;
+	float value = *(float *)data;
 	char text[128];
-	sprintf(text, "freq: %d Hz", value);
+	sprintf(text, "freq: %.2f Hz", value);
 	label_set_text(svalue, text);
 }
 
@@ -49,7 +50,8 @@ int on_checkbutton(void *p1)
 
 int on_button_play(void *p1)
 {
-	printf("PLAY!\n");
+	float freq = sliderbar_get_value(slider);
+	printf("PLAY AT %.2f HZ!\n", freq);
 	return (1);
 }
 
@@ -70,7 +72,7 @@ int main(int argc, const char *argv[], const char **envp)
 
 	box		= box_create(window, 295, 210, 12, 12, ".:[ tool box ]:.", 0);
 
-	sliderbar_create(box, 180, 18, 12, 175, 20, 22000, &on_freq_change);
+	slider = sliderbar_create(box, 180, 18, 12, 175, 20, 22000, &on_freq_change);
 	svalue = label_create(box, 120, 18, 190, 14, "freq: 20 Hz", XS_LABEL_NORMAL);
 	widget_set_fontStyle(svalue, XS_FONT_STYLE_BOLD);
 

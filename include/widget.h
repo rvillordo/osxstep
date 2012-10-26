@@ -233,6 +233,9 @@ void 	tableview_reload_data(widget_t *table);
 char 	*treeview_get_selected(widget_t *parent);
 void	*treeview_get_list(widget_t *parent);
 
+float	sliderbar_get_value(widget_t *);
+void	sliderbar_set_value(widget_t *, float);
+
 extern unsigned int hash(void *, unsigned int);
 
 void view_draw_line(widget_t *view, int lineWidth, long color, int x, int y, int xl, int yl);

@@ -8,7 +8,7 @@
 CC				= gcc
 DFLAGS			= -g3 -ggdb
 CFLAGS			= -Wall -I../include/ -I../libcnary/include $(DFLAGS)
-SOURCES			= wave.c
+SOURCES			= main.c
 TARGET			= osxstep
 
 .PHONY: label clean
@@ -28,4 +28,4 @@ all:
 	@#cp MainMenu.nib osxstep.app/Contents/Resources/English.lproj
 
 clean: 
-	-rm -rf $(OBJECTS) $(TARGET) $(TARGET_DYNAMIC) osxstep.app
+	-rm -rf $(OBJECTS) $(TARGET) $(TARGET_DYNAMIC) osxstep.app *.dSYM libosxstep.dylib

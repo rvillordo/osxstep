@@ -41,7 +41,7 @@ int on_combo_change(void *p1)
 	widget_t *combobox = (widget_t *)p1;
 	item = combobox_get_selected(combobox);
 	i = atoi(index(item, ' ') + 1);
-	widget_set_background(bglabel, i);
+	widget_set_backgroundColor(bglabel, i);
 	return (i);
 }
 
@@ -109,7 +109,7 @@ int main(int argc, const char **argv)
 	screen 	= screen_create(0,0);
 
 	window	= window_create(screen, 640, 480, 160, 160," osxstep v0.1 ", 0);
-	window_set_bgcolor(window, XS_COLOR_GRAY);
+	widget_set_backgroundColor(window, XS_COLOR_GRAY);
 
 	box		= box_create(window, 295, 210, 12, 255, ".:[ box example ]:.", 0);
 
@@ -127,7 +127,7 @@ int main(int argc, const char **argv)
 	button	= button_create(box, 58, 22, (295 - 62 - 8), (210 - 28), "quit", &on_button_quit);
 
 	bglabel = label_create(box, 80, 15, 12, 60, "background color", XS_LABEL_NORMAL);
-	widget_set_background(bglabel, XS_COLOR_YELLOW);
+	widget_set_backgroundColor(bglabel, XS_COLOR_YELLOW);
 
 	txtlabel 	= label_create(box, 80, 15, 12, 80, "text color: ", XS_LABEL_BIG);
 	widget_set_textColor(txtlabel, XS_COLOR_RED);
@@ -158,7 +158,7 @@ int main(int argc, const char **argv)
 	widget_set_textColor(clocklabel, XS_COLOR_GREEN);
 
 	view = view_create(window, 290, 210, 320, 190, "lero", 0);
-	widget_set_background(view, XS_COLOR_YELLOW);
+	widget_set_backgroundColor(view, XS_COLOR_YELLOW);
 	widget_set_event(view, XS_EVENT_EXPOSE, &drawRect);
 
 	//sliderbar_create(box, 200, 22, 10, 50, 0, 100, XS_WTYPE_SLIDE_BAR);

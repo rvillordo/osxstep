@@ -4,6 +4,7 @@
 {
 	id parent;
 	void *wptr;
+	float floatValue;
 	cbptr_t	callback;
 }
 @property (assign) id parent;
@@ -12,5 +13,8 @@
 
 - (void) setCallback:(cbptr_t)cb;
 - (int)doCallback:(id)value;
+- (void)setFloatVal:(float)value;
+- (float)getFloatVal;
+
 
 @end;

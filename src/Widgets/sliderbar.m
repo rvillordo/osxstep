@@ -18,6 +18,7 @@ sliderbar_t *sliderbar_create(widget_t *parent, float width, float height, float
 	[_slider setMinValue:min];
 	[_slider setMaxValue:max];
 	[_slider setCallback:cb];
+	[_slider setFloatVal:0.0];
 
 	[[view contentView] addSubview:_slider];
 
@@ -32,14 +33,17 @@ sliderbar_t *sliderbar_create(widget_t *parent, float width, float height, float
 void sliderbar_set_value(sliderbar_t *slider, float value)
 {
 	XSSliderBar *level = (XSSliderBar *)slider->gptr;
-	[level setDoubleValue:value];
+	[level setFloatVal:value];
 	[level setNeedsDisplay:YES];
 }
 
 float sliderbar_get_value(sliderbar_t *slider)
 {
+	float val;
 	XSSliderBar *level = (XSSliderBar *)slider->gptr;
-	return ([[level value] doubleValue]);
+	val = [level getFloatVal];
+	NSLog(@"VAL VALOR: %.2f", val);
+	return (val);
 }
 
 void sliderbar_set_disable(sliderbar_t *slider)

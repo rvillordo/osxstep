@@ -19,6 +19,8 @@
 + (XSListItem *)    	rootItem;
 + (XSListItem *)    	setRootItem:(NSString *)stringValue;
 
+- (void)				setChildren:(NSMutableArray *)chil;
+
 - (id)                  initWithString:(NSString *)stringValue parent:(XSListItem *)parentItem;
 
 - (id)                  setRootItem:(NSString *)stringValue;

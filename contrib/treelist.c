@@ -4,10 +4,13 @@
 #define XS_ALERT_INFO 0
 
 label_t		*luser, *lpass, *bglabel, *txtlabel;
+label_t		*clocklabel;
 box_t		*box;
 window_t	*window;
 treeview_t 	*dirlist;
 view_t 		*view;
+progressbar_t *level;
+tableview_t *table;
 
 int on_button_quit(void *p1)
 {
@@ -18,6 +21,47 @@ int drawRect(void *data)
 {
 	view_draw_line((view_t *)data, 1, 10, 280, 1, 1, 1);
 	return (0);
+}
+
+int update_clock(void *data)
+{
+	char tdate[16];
+	time_t now = time(NULL);
+	struct tm *tm = localtime(&now);
+	snprintf(tdate, 16, "%02d:%02d:%02d", tm->tm_hour, tm->tm_min, tm->tm_sec);
+	label_set_text(clocklabel, tdate);
+	return (0);
+}
+int on_button_clear(void *p1)
+{
+	tableview_clear_table(table);
+	tableview_reload_data(table);
+	return (1);
+}
+
+
+int on_combo_change(void *p1)
+{
+	char	*item;
+	int i;
+	widget_t *combobox = (widget_t *)p1;
+	item = combobox_get_selected(combobox);
+	i = atoi(index(item, ' ') + 1);
+	widget_set_background(bglabel, i);
+	return (i);
+}
+
+int on_checkbutton(void *p1)
+{
+	widget_set_textColor(txtlabel, rand() % XS_COLOR_LIST_MAX);
+	return (1);
+}
+
+int on_button_check(void *p1)
+{
+	int i;
+	char *user = inputbox_get_text(luser);
+	char *pass = inputbox_get_text(lpass);
 }
 
 int main(int argc, const char **argv)
@@ -48,8 +92,8 @@ int main(int argc, const char **argv)
 	label 	= label_create(box, 80, 15, 12, 38, "senha: ", XS_LABEL_NORMAL);
 	widget_set_fontStyle(label, XS_FONT_STYLE_BOLD);
 
-	iuser 	= inputbox_create(box, 80, 18, 95, 18, "user", XS_INPUT_NORMAL);
-	ipass 	= inputbox_create(box, 80, 18, 95, 38, "pass", XS_INPUT_PASSWORD);
+	luser 	= inputbox_create(box, 80, 18, 95, 18, "user", XS_INPUT_NORMAL);
+	lpass 	= inputbox_create(box, 80, 18, 95, 38, "pass", XS_INPUT_PASSWORD);
 
 	button 	= button_create(box, 58, 22, 95 + 85, 36, " check ", &on_button_check);
 	button->runInBackground = 1;
@@ -69,7 +113,7 @@ int main(int argc, const char **argv)
 	combobox_add_item(combobox, "amarelo  3");
 	combobox_add_item(combobox, "azul     4");
 
-	dirlist = treeview_create(window, 300, 210, 12, 20, "treeview", "/Users/rafael/osxtep-0.1/libwin/osxstep-0.2/");
+	dirlist = treeview_create(window, 300, 210, 12, 20, "treeview", "/Users/rafael/src/");
 	//dirlist = treeview_create(window, 300, 210, 12, 20, "treeview", root);
 
 	table = tableview_create(window, 290, 210, 320, 250, "tableview", 0);
@@ -92,7 +136,7 @@ int main(int argc, const char **argv)
 	widget_set_background(view, XS_COLOR_YELLOW);
 	widget_set_event(view, XS_EVENT_EXPOSE, &drawRect);
 
-	//sliderbar_create(box, 200, 22, 10, 50, 0, 100, XS_WTYPE_SLIDE_BAR);
+	sliderbar_create(box, 200, 22, 10, 50, 0, 100, NULL);
 	//view_draw_line(view, 10, 0, 0, 10, 0, 100);
 
 	XSAddTimer(XS_WAIT_MAINLOOP, 1.0, clocklabel);

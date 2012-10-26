@@ -9,6 +9,7 @@
 @synthesize defaultFont;
 @synthesize scrollView;
 @synthesize treeData;
+@synthesize dataSource;
 
 -(id)initWithFrame:(NSRect)frame andTitle:(NSString *)title andData:(id)data
 {
@@ -36,7 +37,7 @@
 
 		XSListItem *item = [XSListItem setRootItem:@"root item"];
 		XSListItem *child = [[XSListItem alloc] initWithString:@"first child" parent:item];
-		[child setRootItem:item];
+		[child setRootItem:@"root item child"];
 		NSMutableArray *nar = [[NSMutableArray alloc] initWithCapacity:10];
 		[item setChildren:nar];
 		XSListItem *child1 = [[XSListItem alloc] initWithString:@"first child" parent:item];
@@ -44,14 +45,14 @@
 		[nar addObject:child];
 		[nar addObject:child1];
 
-		dataSource = [[XSTreeData alloc] init];
-		[dataSource setRootNode:@"/Users/rafael/osxtep-0.1/libwin/osxstep-0.2"];
+		//dataSource = [[XSTreeData alloc] init];
+		//[dataSource setRootNode:@"/tmp/"];
 
 		//[_self setDataSource:(id)dataSource];
-		[_self setDataSource:(id)item];
+		//[_self setDataSource:(id)item];
 		[_self setDelegate:_self];
 		//[_self expandItem:[dataSource getRootNode] expandChildren:NO];
-		[_self reloadData];
+		//[_self reloadData];
 
 		[scrollView setDocumentView:_self];
 		[scrollView setNeedsDisplay:YES];
@@ -91,20 +92,21 @@
 		[child1 setChildren:nar1];
 
 		//dataSource = [[XSTreeData alloc] init];
-		//	[dataSource setRootNode:@"/Users/rafael/osxtep-0.1/libwin/osxstep-0.2"];
+		//[dataSource setRootNode:@"/Users/rafael/osxtep-0.1/libwin/osxstep-0.2"];
 
-		[_self setIndentationMarkerFollowsCell:YES];
+		//[_self setIndentationMarkerFollowsCell:YES];
 		[_self setDataSource:(id)item];
 
 		//dataSource = [[XSTreeData alloc] init];
 		//[dataSource setRootNode:path];
-		[_self setDelegate:_self];
 		//[_self setDataSource:dataSource];
 		//[_self expandItem:[dataSource getRootNode] expandChildren:NO];
-		[_self reloadData];
 
 		[scrollView setDocumentView:_self];
 		[scrollView setNeedsDisplay:YES];
+		[_self setDelegate:_self];
+		[_self setNeedsDisplay:YES];
+		[_self reloadData];
 
 		[col release];
 
@@ -131,7 +133,7 @@
 {
 	[super mouseDown:theEvent];
 	id item = [self itemAtRow:[self selectedRow]];
-	BOOL isExpanded = [self outlineView:self isItemExpandable:item];
+	BOOL isExpanded = [self isItemExpandable:item];
 	if([theEvent clickCount] == 2) {
 		if([self isItemExpanded:item]) {
 			 [self collapseItem:item];
@@ -145,9 +147,12 @@
 {
 	NSTextFieldCell *c = cell;
 	NSString *s;
-	BOOL isSelected, isModified, expand;
+	BOOL isSelected = false, isModified = false, expand;
 	NSInteger depth;
 
+	isSelected = isModified;
+
+	NSLog(@"will display cell!\n");
 	expand = [outlineView isExpandable:item];
 	if(item == [item rootItem]) {
 		depth = 0;
@@ -197,17 +202,23 @@
 - (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item 
 {
 	NSLog(@"lero lero");
-	return (item == nil ? @"null" : @"null"); //[item data]);
+	return (item == nil ? @"null" : (id)[item data]);
 }
 
 - (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item 
 {
 	NSLog(@"laskjdlajsd");
-	return (item == nil) ? 1 : 1; //[[item children] count];
+	return (item == nil) ? 1 : [[item children] count];
+}
+
+- (BOOL) isItemExpandable:(id)item
+{
+	return (item == nil ? NO : ([[item children] count] ? YES : NO));
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item
 {
+	NSLog(@"IS ITEM EXPANDABLE?!? %@", item);
 	return (item == nil ? NO : ([[item children] count] ? YES : NO));
 }
 

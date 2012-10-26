@@ -18,7 +18,7 @@
 		[_self setBorderType:NSGrooveBorder];
 		[_self setTitlePosition:NSAtTop];
 		[_self setCornerRadius:6.0];
-		[[_self titleCell] setTextColor:[NSColor orangeColor]];
+		[[_self titleCell] setTextColor:[NSColor blackColor]];
 	}
 	return (_self);
 }

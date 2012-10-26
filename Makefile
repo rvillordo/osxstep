@@ -31,7 +31,7 @@ INTERFACE_OBJECTS = src/Interface/XSInterface.o
 all: interface dyn contrib
 
 dyn: $(OBJECTS)
-	@echo "[building executable ...]";
+	@echo "\n\t[building library...]";
 	$(CC) $(OBJECTS) $(INTERFACE_OBJECTS) $(LDFLAGS_DYNAMIC) -o $(TARGET_DYNAMIC)
 
 static: $(OBJECTS)
@@ -39,10 +39,12 @@ static: $(OBJECTS)
 	@$(RANLIB) $(TARGET_STATIC)
 
 interface:
+	@clear
 	@echo "[osxstep building interface ...]";
 	make -C src/Interface
 
 contrib:
+	@echo "\n\t[building examples...]"
 	#@mkdir -p ./contrib/osxstep.app/Contents/MacOS
 	#@$(CC) $(CFLAGS) contrib/main.c -o contrib/osxstep.app/Contents/MacOS/osxstep libosxstep.dylib 
 	#@cp ./libosxstep.dylib ./contrib/osxstep.app/Contents/MacOS/

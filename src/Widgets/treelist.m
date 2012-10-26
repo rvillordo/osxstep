@@ -18,7 +18,8 @@ treeview_t *treeview_create(widget_t *parent, float width, float height, float x
 
 	NSRect frame = NSMakeRect(x, y, width, height);
 
-	XSTree *_tree = [[XSTree alloc] initWithFrame:frame andTitle:[NSString stringWithUTF8String:title] andList:list];
+	//XSTree *_tree = [[XSTree alloc] initWithFrame:frame andTitle:[NSString stringWithUTF8String:title] andList:list];
+	XSTree *_tree = [[XSTree alloc] initWithFrame:frame andTitle:[NSString stringWithUTF8String:title] andDataSource:[NSString stringWithUTF8String:(char *)list]];
 
 	[[pview contentView] addSubview:[_tree scrollView]];
 

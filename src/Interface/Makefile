@@ -25,9 +25,10 @@ OBJECTS=$(SOURCES:.m=.o)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 all: $(OBJECTS)
-	@echo [LD XSInterface.o ...];
+	@echo "\t[LD XSInterface.o ...]";
 	@$(LD) -r -o XSInterface.o $(OBJECTS)
+	@echo ""
 
 clean: 
-	-rm -rf $(OBJECTS)
+	-rm -rf $(OBJECTS) XSInterface.o
 

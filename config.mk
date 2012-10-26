@@ -12,4 +12,4 @@ TARGET_STATIC	= libosxstep.a
 TARGET_DYNAMIC	= libosxstep.dylib 
 AR				= ar rcs
 RANLIB			= ranlib -L
-LDFLAGS_DYNAMIC	= -dynamiclib -framework AppKit -install_name @executable_path/$(TARGET_DYNAMIC) -L/opt/local/include -L/opt/local/ 
+LDFLAGS_DYNAMIC	= -dynamiclib -framework AppKit -install_name @executable_path/$(TARGET_DYNAMIC) 

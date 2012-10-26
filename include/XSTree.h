@@ -22,5 +22,6 @@
 - (id)getSelected;
 - (id)getTreeData;
 - (void)setTreeData:(id)data;
+- (BOOL)isItemExpandable:(id)item;
 
 @end

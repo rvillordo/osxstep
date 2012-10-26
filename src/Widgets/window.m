@@ -48,7 +48,7 @@ window_t *window_create(widget_t *parent, float width, float height, float x, fl
 
 	NSRect frame = NSMakeRect(x, y, width, height);
 	XSWindow *win = [[XSWindow alloc] initWithContentRect:frame
-												styleMask:NSTitledWindowMask|NSMiniaturizableWindowMask|NSResizableWindowMask
+												styleMask:NSTitledWindowMask|NSMiniaturizableWindowMask|NSClosableWindowMask //NSResizableWindowMask|NSClosableWindowMask
 											  //styleMask:NSBorderlessWindowMask|NSClosableWindowMask|NSMiniaturizableWindowMask|NSResizableWindowMask
 												  backing:NSBackingStoreBuffered defer:NO];
 	[win setHasShadow:YES];

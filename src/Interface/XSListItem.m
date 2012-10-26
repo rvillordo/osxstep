@@ -82,8 +82,6 @@ static NSMutableArray 	*leafNode = nil;
 
 - (void)outlineView:(NSOutlineView *)outlineView willDisplayCell:(id)cell forTableColumn:(NSTableColumn *)tableColumn item:(id)item
 {
-    NSTextFieldCell *c = cell;
-	[c setNeedsDisplay:YES];
 }
 
 - (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item 
