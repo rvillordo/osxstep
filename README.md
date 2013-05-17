@@ -1,7 +1,6 @@
 # osxstep - 0.3
 
  source for osxstep library, work in progress...
-	-snape
 
 ## Overview
 
