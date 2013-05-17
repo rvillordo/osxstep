@@ -102,39 +102,42 @@ void widget_set_textColor(widget_t *widget, int _color)
 	id  p;
 	NSColor *color;
 	p = (id)(widget->gptr);
+	NSLog(@"set textColor widget: %@, color: %d", p, _color);
 	switch(_color) {
-		case 0:
+		case XS_COLOR_BLACK:
 			color = [NSColor blackColor];
 			break;
-		case 1:
+		case XS_COLOR_RED:
 			color = [NSColor redColor];
 			break;
-		case 2:
+		case XS_COLOR_GREEN:
 			color = [NSColor greenColor];
 			break;
-		case 3: 
+		case XS_COLOR_YELLOW:
 			color = [NSColor yellowColor];
 			break;
-		case 4:
+		case XS_COLOR_BLUE:
 			color = [NSColor blueColor];
 			break;
-		case 5:
+		case XS_COLOR_MAGENTA:
 			color = [NSColor magentaColor];
 			break;
-		case 6:
+		case XS_COLOR_CYAN:
 			color = [NSColor cyanColor];
 			break;
-		case 7:
+		case XS_COLOR_WHITE:
 			color = [NSColor whiteColor];
 			break;
-		case 8:
+		case XS_COLOR_GRAY:
+			color = [NSColor grayColor];
+			break;
 		default:
 			color = [NSColor clearColor];
 			break;
 
 	}
-	[p setTextColor:color];
-	[p setNeedsDisplay:YES];
+	[p setBackgroundColor:color];
+	//[[p parent] setNeedsDisplay:YES];
 }
 
 void widget_set_backgroundColor(widget_t *widget, XS_COLOR_LIST _color)
@@ -142,39 +145,42 @@ void widget_set_backgroundColor(widget_t *widget, XS_COLOR_LIST _color)
 	id  p;
 	NSColor *color;
 	p = (id)(widget->gptr);
+	NSLog(@"set backgroundColor widget: %@, color: %d", p, _color);
 	switch(_color) {
-		case 0:
+		case XS_COLOR_BLACK:
 			color = [NSColor blackColor];
 			break;
-		case 1:
+		case XS_COLOR_RED:
 			color = [NSColor redColor];
 			break;
-		case 2:
+		case XS_COLOR_GREEN:
 			color = [NSColor greenColor];
 			break;
-		case 3: 
+		case XS_COLOR_YELLOW:
 			color = [NSColor yellowColor];
 			break;
-		case 4:
+		case XS_COLOR_BLUE:
 			color = [NSColor blueColor];
 			break;
-		case 5:
+		case XS_COLOR_MAGENTA:
 			color = [NSColor magentaColor];
 			break;
-		case 6:
+		case XS_COLOR_CYAN:
 			color = [NSColor cyanColor];
 			break;
-		case 7:
+		case XS_COLOR_WHITE:
 			color = [NSColor whiteColor];
 			break;
-		case 8:
+		case XS_COLOR_GRAY:
+			color = [NSColor grayColor];
+			break;
 		default:
 			color = [NSColor clearColor];
 			break;
 
 	}
 	[p setBackgroundColor:color];
-	[p setNeedsDisplay:YES];
+	//[[p parent] setNeedsDisplay:YES]; // update to OSX 10.7.5
 }
 
 void widget_set_update(widget_t *widget)

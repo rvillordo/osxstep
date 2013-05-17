@@ -1,15 +1,15 @@
 # osxstep - 0.3
 
- source for osxstep library
-	-snp
+ source for osxstep library, work in progress...
+	-snape
 
 ## Overview
 
  OSXStep is a small toolkit for OSX. it allows you to create cocoa visual interfaces in C 
  without the need of using Carbon. It was based on libxstep
  
- its in a very alpha stage, full of bugs and very bad designed. any help is 
- welcome.
+ The status of this code is 'work in progress'. I had created this library for personal 
+ usage, and the code won't be going to be updated that often.
 
 ## References
 

@@ -1,9 +1,6 @@
-#
-# OSXstep - OSX Graphical Toolkit v0.2
-#
-# Copyright (c) 2012, rafael villordo
+# OSXstep - OSX Graphical Toolkit v0.3
+# Copyright (c) 2011, rafael villordo
 # rvillordo@gmail.com
-#
 #
 CC				= gcc
 DFLAGS			= -g3 -ggdb 
